@@ -22,15 +22,13 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 	Banco bc;
 	
 	// rótulos
-	JLabel ldescProduto = new JLabel("Desc. Produto:"); 
-	JLabel luniProduto  = new JLabel("Un. Produto..:"); 
-	JLabel lvlrProduto  = new JLabel("Vlr. Produto.:"); 
+	JLabel ldescProduto = new JLabel("Nome Produto:");  
+	JLabel lvlrProduto  = new JLabel("Fornecedor Produto.:"); 
 	
 	private Font f	= new Font("Courier", Font.PLAIN, 12);
 	
 	// campos
 	JTextField tdesProduto = new JTextField();
-	JTextField tuniProduto = new JTextField();
 	JTextField tvlrProduto = new JTextField();
 	
 	// botões
@@ -45,15 +43,12 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		
 		// setando a fonte
 		ldescProduto.setFont(f);
-		luniProduto.setFont(f);
 		lvlrProduto.setFont(f);
 		
 		// coordenadas
 		ldescProduto.setBounds(10,10,105,25);
 		tdesProduto.setBounds(118,10,265,25);
 				
-		luniProduto.setBounds(10,40,105,25);
-		tuniProduto.setBounds(118,40,22,25);
 		
 		lvlrProduto.setBounds(10,70,105,25);
 		tvlrProduto.setBounds(118,70,100,25);
@@ -65,8 +60,6 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		// adicionando componentes
 		ct.add(ldescProduto);
 		ct.add(tdesProduto);
-		ct.add(luniProduto);
-		ct.add(tuniProduto);
 		ct.add(lvlrProduto);
 		ct.add(tvlrProduto);
 		ct.add(btSubmeter);
@@ -83,7 +76,7 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		bc = Banco.getInstance();
 	}	
 
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btSubmeter){
 			
@@ -99,7 +92,6 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 			System.out.println(codP);
 			
 			tdesProduto.setText("");
-			tuniProduto.setText("");
 			tvlrProduto.setText("");
 			
 			tdesProduto.requestFocus();
@@ -107,7 +99,6 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		}
 		if(e.getSource() == btLimpar){
 			tdesProduto.setText("");
-			tuniProduto.setText("");
 			tvlrProduto.setText("");
 		}
 	}
