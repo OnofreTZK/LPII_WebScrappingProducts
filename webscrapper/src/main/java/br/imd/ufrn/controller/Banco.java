@@ -4,19 +4,16 @@ package br.imd.ufrn.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-
-import br.imd.ufrn.model.Produto;
-
 public class Banco {
 	
-	private ArrayList<Produto> produtos;
+	private ArrayList<Object> produtos;
 	
 	private static Banco banco;
 	
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private Banco(){
-		produtos        = new ArrayList<Produto>();
+		produtos        = new ArrayList<Object>();
 	}
 	
 	// Singleton
@@ -27,7 +24,7 @@ public class Banco {
 		return banco;
 	}
 	
-	public void inserirProduto(Produto p)  {
+	public void inserirProduto(Object p)  {
 		produtos.add(p);
 		System.out.println("Produto Inserido com sucesso!!");
 	}

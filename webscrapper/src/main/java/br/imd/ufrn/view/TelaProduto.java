@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import br.imd.ufrn.controller.Banco;
-import br.imd.ufrn.model.Produto;
+import br.imd.ufrn.model.*;
 
 public class TelaProduto extends JInternalFrame implements ActionListener{
 
@@ -81,11 +81,11 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		if (e.getSource() == btSubmeter){
 			
 			// setar atributos Produto
-			Produto p = new Produto();
+			ProductInterface p = new Eletronic();
 			
 			
-			p.setNomeProduto(tdesProduto.getText());
-			p.setValorProduto(Double.parseDouble(tvlrProduto.getText()));
+			p.setName(tdesProduto.getText());
+			p.setPrice(Double.parseDouble(tvlrProduto.getText()));
 			
 			// persistir dados
 			bc.inserirProduto(p);
