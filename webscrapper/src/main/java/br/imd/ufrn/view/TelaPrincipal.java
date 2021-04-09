@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import br.imd.ufrn.controller.Banco;
 
 public class TelaPrincipal extends JFrame implements ActionListener{
@@ -19,44 +18,41 @@ public class TelaPrincipal extends JFrame implements ActionListener{
 	
 	Banco bc;
 
-	JDesktopPane dtp = new JDesktopPane();
+	JDesktopPane dtp = new JDesktopPane();	
+	JMenuBar mnbar = new JMenuBar();
+
 	
-	JMenuBar mnbar = new JMenuBar();	
-	JMenu menuCada = new JMenu("Cadastros");
-	JMenu menuRela = new JMenu("Relatórios");
+	JMenu menuBuscar = new JMenu("Produtos");
 	JMenu menuAjud = new JMenu("Ajuda");
 	
-	JMenuItem mItem1 = new JMenuItem("Clientes");
-	JMenuItem mItem2 = new JMenuItem("Fornecedores");
-	JMenuItem mItem3 = new JMenuItem("Produtos");
 	
-	JMenuItem mItem4 = new JMenuItem("Lista Clientes");
-	JMenuItem mItem5 = new JMenuItem("Lista Fornecedores");
-	JMenuItem mItem6 = new JMenuItem("Lista Produtos");
+	JMenuItem mItem1 = new JMenuItem("Buscar Produtos");	
+	JMenuItem mItem2 = new JMenuItem("Top 10 mais caros");
+	JMenuItem mItem3 = new JMenuItem("Top 10 mais baratos");
+	JMenuItem mItem4 = new JMenuItem("Média de preço");		
+
+	JMenuItem mItem5 = new JMenuItem("Sobre");
+	JMenuItem mItem6 = new JMenuItem("Sair");	
 	
-	JMenuItem mItem7 = new JMenuItem("Sobre");
-	JMenuItem mItem8 = new JMenuItem("Sair");
 		 		
 	public TelaPrincipal(){
 		Container ct = this.getContentPane();
 		ct.setLayout(new BorderLayout());
 		
 		setJMenuBar(mnbar);
-		mnbar.add(menuCada);
-		mnbar.add(menuRela);
+		mnbar.add(menuBuscar);
 		mnbar.add(menuAjud);
 
-		menuCada.add(mItem1);
-		menuCada.add(mItem2);
-		menuCada.add(mItem3);
+		menuBuscar.add(mItem1);
+		menuBuscar.addSeparator();
+		menuBuscar.add(mItem2);
+		menuBuscar.add(mItem3);
+		menuBuscar.add(mItem4);
+
 		
-		menuRela.add(mItem4);
-		menuRela.add(mItem5);
-		menuRela.add(mItem6);
-		
-		menuAjud.add(mItem7);
+		menuAjud.add(mItem5);
 		menuAjud.addSeparator();
-		menuAjud.add(mItem8);
+		menuAjud.add(mItem6);
 		
 		ct.add(BorderLayout.CENTER, dtp);
 		
@@ -66,26 +62,31 @@ public class TelaPrincipal extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// eventos
-		mItem1.addActionListener(this);	
+		mItem1.addActionListener(this);
 		mItem2.addActionListener(this);
 		mItem3.addActionListener(this);
-		
 		mItem4.addActionListener(this);
-		mItem5.addActionListener(this);
-		mItem6.addActionListener(this);
 		
-		mItem8.addActionListener(this);
+		
+		mItem5.addActionListener(this);	
+		mItem6.addActionListener(this);		
 	}
 	
-	
+
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == mItem3){
+		if (e.getSource() == mItem1){
 			TelaProduto tlProduto = new TelaProduto("Produtos");
 			dtp.add(tlProduto);
 			tlProduto.setVisible(true);
 		}
-		if (e.getSource() == mItem8) {
-			System.out.println("Fechando o sistema!!!");
+		if (e.getSource() == mItem5) {
+			TelaSobre tlSobre = new TelaSobre("Sobre");
+			dtp.add(tlSobre);
+			tlSobre.setVisible(true);
+		}
+		
+		if (e.getSource() == mItem6) {
+			//System.out.println("Fechando o sistema!!!");
 			System.exit(0);
 		}
 	}

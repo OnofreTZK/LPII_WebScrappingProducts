@@ -22,14 +22,12 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 	Banco bc;
 	
 	// rótulos
-	JLabel ldescProduto = new JLabel("Nome Produto:");  
-	JLabel lvlrProduto  = new JLabel("Fornecedor Produto.:"); 
+	JLabel ldescProduto = new JLabel("Nome Produto:");   
 	
 	private Font f	= new Font("Courier", Font.PLAIN, 12);
 	
 	// campos
 	JTextField tdesProduto = new JTextField();
-	JTextField tvlrProduto = new JTextField();
 	
 	// botões
 	JButton btSubmeter = new JButton("Submeter");
@@ -43,15 +41,10 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		
 		// setando a fonte
 		ldescProduto.setFont(f);
-		lvlrProduto.setFont(f);
 		
 		// coordenadas
-		ldescProduto.setBounds(10,10,105,25);
-		tdesProduto.setBounds(118,10,265,25);
-				
-		
-		lvlrProduto.setBounds(10,70,105,25);
-		tvlrProduto.setBounds(118,70,100,25);
+		ldescProduto.setBounds(10,50,105,25);
+		tdesProduto.setBounds(118,50,265,25);
 		
 		// idem
 		btSubmeter.setBounds(50,140,100,30);
@@ -60,8 +53,6 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		// adicionando componentes
 		ct.add(ldescProduto);
 		ct.add(tdesProduto);
-		ct.add(lvlrProduto);
-		ct.add(tvlrProduto);
 		ct.add(btSubmeter);
 		ct.add(btLimpar);
 				
@@ -85,21 +76,19 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 			
 			
 			p.setName(tdesProduto.getText());
-			p.setPrice(Double.parseDouble(tvlrProduto.getText()));
+			//p.setPrice(Double.parseDouble(tvlrProduto.getText()));
 			
 			// persistir dados
 			bc.inserirProduto(p);
-			System.out.println(codP);
+			System.out.println(p.getName());			
 			
 			tdesProduto.setText("");
-			tvlrProduto.setText("");
 			
 			tdesProduto.requestFocus();
 						
 		}
 		if(e.getSource() == btLimpar){
 			tdesProduto.setText("");
-			tvlrProduto.setText("");
 		}
 	}
 
