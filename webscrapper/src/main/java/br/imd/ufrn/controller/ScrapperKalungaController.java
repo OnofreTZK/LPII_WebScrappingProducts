@@ -1,37 +1,106 @@
 package br.imd.ufrn.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
+import br.imd.ufrn.model.Eletronic;
+import br.imd.ufrn.model.IProductInterface;
+
 public class ScrapperKalungaController extends ScrapperController {
 
+	// Attributes
+	List<String> prices = new ArrayList<String>();
+	ArrayList<String> names = new ArrayList<String>();
+	HashMap<String, String> preset = new HashMap<String, String>();
+	
 	public ScrapperKalungaController(String searchKey) {
 		super(searchKey);
 	}
 	
 	// Methods
 	@Override
-	public void makeRequest() {
+	public void makeScrapper() {
 		try {
             document = Jsoup.connect("https://www.kalunga.com.br/busca/1?q=" + searchKey).get();
         } catch (IOException e) {
 
          }
 
-        Elements links = document.body().getElementsByTag("span");
+        Elements tagsPrice = document.body().getElementsByTag("span");
+        Elements tagsName = document.body().getElementsByTag("h2");
+        
 
-        for (int i = 0; i < links.size(); i++) {
-            if(links.get(i).toString().contains("R$")) {
-                System.out.println("Preço: " + links.get(i).text());
+        // Filtering prices
+        for (int i = 0; i < tagsPrice.size(); i++) {
+        	
+        	
+        	if(tagsPrice.get(i).toString().toLowerCase().contains("total a prazo")) {
+        		continue;
+        	}
+        	
+            if(tagsPrice.get(i).toString().contains("R$")) {
+            	if(tagsPrice.get(i).toString().contains("à vista")) {
+            		
+            		String str = tagsPrice.get(i).text();
+            	
+            		prices.add(str.split(" ")[1]);
+            	}
             }
         }
-
-        Elements links2 = document.body().getElementsByTag("h2");
-
-        for (int i = 0; i < links2.size(); i++) {
-        	System.out.println("Nome: " + links2.get(i).text());
+        
+        // Filtering names
+        for (int i = 0; i < tagsName.size(); i++) {
+        	
+        	//int pricesIndex = 0;
+        	
+        	String str = tagsName.get(i).text();
+        	
+        	if(str.regionMatches(0, searchKey, 0, searchKey.length())) {
+       
+        		names.add(str);
+        		//pricesIndex += 1;
+        	}
+        	else {
+        		//prices.remove(pricesIndex);
+        	}
         }
+        
+        int setSize;
+        
+        if(names.size() == prices.size()) {
+        	setSize = names.size();
+        } else {
+        	setSize = prices.size();
+        }
+        
+        
+        // Setting map for product
+        for (int i = 0; i < setSize; i++) {
+        	preset.put(names.get(i), prices.get(i));
+        	
+        	System.out.println(names.get(i) + " | Preco: " + preset.get(names.get(i)));
+        }
+		
+	}
+	
+	@Override
+	public ArrayList<IProductInterface> getProductsList() {
+		
+		ArrayList<IProductInterface> products = new ArrayList<IProductInterface>();
+	        
+		for (int i = 0; i < preset.size(); i++) {
+			products.add(new Eletronic());
+			products.get(i).setName(names.get(i));
+			products.get(i).setPrice(preset.get(names.get(i)));
+			products.get(i).setSite("https://www.kalunga.com.br");
+		}
+		
+		return products;
 		
 	}
 

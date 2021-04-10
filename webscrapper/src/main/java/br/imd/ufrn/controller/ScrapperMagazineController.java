@@ -12,7 +12,7 @@ public class ScrapperMagazineController extends ScrapperController {
 	
 	 // Methods
 	 @Override
-	 public void makeRequest() {
+	 public void makeScrapper() {
 		 
 		 try {
 			 document = Jsoup.connect("https://www.magazineluiza.com.br/busca/" + searchKey + "/").get();			

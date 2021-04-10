@@ -1,6 +1,10 @@
 package br.imd.ufrn.controller;
 
+import java.util.ArrayList;
+
 import org.jsoup.nodes.Document;
+
+import br.imd.ufrn.model.IProductInterface;
 
 public class ScrapperController {
 	
@@ -19,7 +23,9 @@ public class ScrapperController {
     	this.searchKey = searchKey;
     }
     
+    
     // Methods
-    public void makeRequest() {}
-
+    public void makeScrapper() {}
+    
+    public ArrayList<IProductInterface> getProductsList() {return null;}
 }

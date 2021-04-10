@@ -1,11 +1,10 @@
 package br.imd.ufrn.model;
 
-public class Eletronic implements ProductInterface {
+public class Eletronic implements IProductInterface {
 
 	// Attributes
 	private String name;
-	private double price;
-	private String category;
+	private String price;
 	private String site;
 	
 	
@@ -14,16 +13,10 @@ public class Eletronic implements ProductInterface {
 		this.name = name;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 		
 	}
-
-	public void setCategory(String category) {
-		this.category = category;
-		
-	}
-	
 	public void setSite(String site) {
 		this.site = site;
 		
@@ -35,12 +28,8 @@ public class Eletronic implements ProductInterface {
 		return name;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
-	}
-
-	public String getCategory() {
-		return category;
 	}
 
 	public String getSite() {

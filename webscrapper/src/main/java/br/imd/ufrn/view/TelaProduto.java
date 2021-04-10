@@ -72,7 +72,7 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		if (e.getSource() == btSubmeter){
 			
 			// setar atributos Produto
-			ProductInterface p = new Eletronic();
+			IProductInterface p = new Eletronic();
 			
 			
 			p.setName(tdesProduto.getText());
