@@ -74,11 +74,26 @@ public class TelaPrincipal extends JFrame implements ActionListener{
 	
 
 	public void actionPerformed(ActionEvent e) {
+		Banco bc = Banco.getInstance();
+		
 		if (e.getSource() == mItem1){
 			TelaProduto tlProduto = new TelaProduto("Produtos");
 			dtp.add(tlProduto);
 			tlProduto.setVisible(true);
 		}
+		
+		if(e.getSource() == mItem2) {
+			bc.ordenaCaros();
+		}
+		
+		if(e.getSource() == mItem3) {
+			bc.ordenaBaratos();
+		}
+		
+		if(e.getSource() == mItem4) {
+			bc.calculaMedia();
+		}
+		
 		if (e.getSource() == mItem5) {
 			TelaSobre tlSobre = new TelaSobre("Sobre");
 			dtp.add(tlSobre);
@@ -86,7 +101,6 @@ public class TelaPrincipal extends JFrame implements ActionListener{
 		}
 		
 		if (e.getSource() == mItem6) {
-			//System.out.println("Fechando o sistema!!!");
 			System.exit(0);
 		}
 	}

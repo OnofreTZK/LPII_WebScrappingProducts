@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import br.imd.ufrn.controller.Banco;
-import br.imd.ufrn.model.*;
 
 public class TelaProduto extends JInternalFrame implements ActionListener{
 
@@ -64,7 +63,6 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		setSize(410,210);
 		setTitle(str);
 				
-		bc = Banco.getInstance();
 	}	
 
 	
@@ -72,21 +70,23 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		if (e.getSource() == btSubmeter){
 			
 			// setar atributos Produto
-			IProductInterface p = new Eletronic();
+			//IProductInterface p = new Eletronic();
 			
-			
-			p.setName(tdesProduto.getText());
+			Banco bc = Banco.getInstance();
+			String p = tdesProduto.getText();
 			//p.setPrice(Double.parseDouble(tvlrProduto.getText()));
 			
 			// persistir dados
-			bc.inserirProduto(p);
-			System.out.println(p.getName());			
+			//bc.inserirProduto(p);
+			//System.out.println(p.getName());			
 			
+			bc.provedor(p);
 			tdesProduto.setText("");
 			
 			tdesProduto.requestFocus();
 						
 		}
+		
 		if(e.getSource() == btLimpar){
 			tdesProduto.setText("");
 		}
