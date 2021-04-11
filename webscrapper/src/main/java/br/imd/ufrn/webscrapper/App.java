@@ -9,7 +9,7 @@ public class App
     {
     	Banco banco = Banco.getInstance();
 
-    	banco.provedor("Notebook");
+    	banco.provedor("Monitor");
     	
     	banco.ordenaBaratos();
     	

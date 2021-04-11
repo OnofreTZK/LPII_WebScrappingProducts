@@ -36,8 +36,8 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 	JButton btLimpar = new JButton("Limpar");
 	
 	// CheckBox
-	JCheckBox top10Max = new JCheckBox("Top10 max");
-	JCheckBox top10Min = new JCheckBox("Top10 min");
+	JCheckBox top10Max = new JCheckBox("Top max");
+	JCheckBox top10Min = new JCheckBox("Top min");
 	JCheckBox mean = new JCheckBox("Média");
 	
 	
@@ -95,29 +95,24 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 		if (e.getSource() == btSubmeter){
 			
 			// setar atributos Produto
-			//IProductInterface p = new Eletronic();
 			
 			Banco bc = Banco.getInstance();
 			String p = tdesProduto.getText();
-			//p.setPrice(Double.parseDouble(tvlrProduto.getText()));
 			
-			// persistir dados
-			//bc.inserirProduto(p);
-			//System.out.println(p.getName());
 			
 			
 			bc.provedor(p);
 			
 			if(top10Max.isSelected()) {
-				System.out.println("vai dar tudo certo");
+				bc.ordenaCaros();;
 			}
 			
 			if(top10Min.isSelected()) {
-				System.out.println("vai dar tudo certo2");
+				bc.ordenaBaratos();;
 			}
 			
 			if(mean.isSelected()) {
-				System.out.println("vai dar tudo certo3");
+				bc.calculaMedia();;
 			}			
 			
 			tdesProduto.setText("");

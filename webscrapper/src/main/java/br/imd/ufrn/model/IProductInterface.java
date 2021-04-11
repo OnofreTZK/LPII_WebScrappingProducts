@@ -11,4 +11,7 @@ public interface IProductInterface {
 	String getName();
 	String getPrice();
 	String getSite();
+	double getValue();
+	public void printProduct();
+	
 }

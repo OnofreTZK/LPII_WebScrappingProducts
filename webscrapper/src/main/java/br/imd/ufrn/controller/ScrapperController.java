@@ -28,4 +28,5 @@ public class ScrapperController {
     public void makeScrapper() {}
     
     public ArrayList<IProductInterface> getProductsList() {return null;}
+
 }

@@ -83,7 +83,7 @@ public class ScrapperKalungaController extends ScrapperController {
         for (int i = 0; i < setSize; i++) {
         	preset.put(names.get(i), prices.get(i));
         	
-        	System.out.println(names.get(i) + " | Preco: " + preset.get(names.get(i)));
+        	//System.out.println(names.get(i) + " | Preco: " + preset.get(names.get(i)));
         }
 		
 	}
@@ -91,13 +91,14 @@ public class ScrapperKalungaController extends ScrapperController {
 	@Override
 	public ArrayList<IProductInterface> getProductsList() {
 		
-		ArrayList<IProductInterface> products = new ArrayList<IProductInterface>();
+		ArrayList<IProductInterface> products = new ArrayList<IProductInterface>(preset.size());
 	        
 		for (int i = 0; i < preset.size(); i++) {
-			products.add(new Eletronic());
-			products.get(i).setName(names.get(i));
-			products.get(i).setPrice(preset.get(names.get(i)));
-			products.get(i).setSite("https://www.kalunga.com.br");
+			IProductInterface newProd = new Eletronic();
+			newProd.setName(names.get(i));
+			newProd.setPrice(preset.get(names.get(i)));
+			newProd.setSite("https://www.kalunga.com.br");
+			products.add(newProd);
 		}
 		
 		return products;
