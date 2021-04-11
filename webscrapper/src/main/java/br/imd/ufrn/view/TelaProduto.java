@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.imd.ufrn.controller.Banco;
@@ -110,6 +111,10 @@ public class TelaProduto extends JInternalFrame implements ActionListener{
 			if(top10Min.isSelected()) {
 				bc.ordenaBaratos();;
 			}
+			
+			if(!top10Min.isSelected() && !top10Max.isSelected() && !mean.isSelected() ) {
+                JOptionPane.showMessageDialog(null, "Preencher os Campos!!!");
+            }
 			
 			if(mean.isSelected()) {
 				bc.calculaMedia();;
